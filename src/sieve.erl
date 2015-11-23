@@ -1,6 +1,6 @@
 -module(sieve).
 
--export([start_link/0]).
+-export([start_link/0, start_link/1]).
 -export([init/1, handle_call/3]).
 -export([is_prime/1, ping/0]).
 
@@ -9,6 +9,9 @@
 start_link() ->
   Args = arguments_provider:get(?REQUIRED_ARGS),
   gen_server:start_link({local, ?MODULE}, ?MODULE, Args, []).
+
+start_link(Size) ->
+  gen_server:start_link({local, ?MODULE}, ?MODULE, [Size], []).
 
 init([SieveSize]) ->
   Sieve = array:new([{size, SieveSize+1}, {fixed, true}, {default, false}]),

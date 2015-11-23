@@ -3,13 +3,13 @@
 -include_lib("eunit/include/eunit.hrl").
 
 sieve_start_test() ->
-  {State, _Pid} = sieve:start_link(),
+  {State, _Pid} = sieve:start_link(100),
   ?assertEqual(State, ok),
   Ping = sieve:ping(),
   ?assertEqual(Ping, pong).
 
 is_prime_test() ->
-  sieve:start_link(),
+  sieve:start_link(100),
   ?assertEqual(true, sieve:is_prime(2)),
   ?assertEqual(true, sieve:is_prime(3)),
   ?assertEqual(true, sieve:is_prime(5)),
