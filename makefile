@@ -1,4 +1,4 @@
-REBAR = `which rebar`
+REBAR = ./rebar
 
 all: clean deps build
 
